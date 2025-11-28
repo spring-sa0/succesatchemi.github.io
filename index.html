@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Succès D. ATCHEMI — Portfolio</title>
+    <meta name="description" content="Portfolio de Succès D. ATCHEMI — projets data, machine learning, big data et pipelines.">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <!-- keep external stylesheet if you already have styles.css; internal styles provide a simple default -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+      :root{--bg:#0f1724;--card:#0b1220;--accent:#7c3aed;--muted:#94a3b8;--glass:rgba(255,255,255,0.04)}
+      *{box-sizing:border-box}
+      body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; color:#e6eef8; background:linear-gradient(180deg,#071025 0%, #071428 60%);line-height:1.5}
+      a{color:inherit}
+      header.site-hero{padding:48px 20px;display:flex;flex-direction:column;gap:28px}
+      .container{max-width:1100px;margin:0 auto;width:100%}
+      nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+      .logo{font-weight:700;font-size:1.05rem;letter-spacing:0.4px}
+      .logo span{color:var(--accent)}
+      .nav-toggle{display:none;background:none;border:1px solid var(--glass);padding:8px;border-radius:8px;color:var(--muted)}
+      .nav-links{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+      .nav-links a{padding:8px 10px;border-radius:8px;color:var(--muted);text-decoration:none}
+      .nav-links a:hover, .nav-links a:focus{color:#fff;background:var(--glass)}
+
+      .hero-grid{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:center;margin-top:24px}
+      .hero-title{font-size:clamp(1.6rem,3.6vw,2.6rem);margin:0 0 8px}
+      .hero-sub{color:var(--muted);margin:0 0 18px}
+      .btn{display:inline-block;background:linear-gradient(90deg,var(--accent),#5b21b6);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none}
+
+  /* profile */
+  .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:14px;text-align:center;display:flex;flex-direction:column;align-items:center}
+  /* make profile image circular and preserve aspect */
+  .profile-pic{width:140px;height:140px;border-radius:50%;display:block;object-fit:cover}
+
+      /* sections */
+      section{padding:54px 20px}
+      h2.section-title{font-size:1.25rem;margin:0 0 18px}
+      .about-text p{color:var(--muted);margin:0}
+
+      .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+      .project-card{position:relative;display:block;height:180px;border-radius:12px;overflow:hidden;background-size:cover;background-position:center;color:#fff;text-decoration:none}
+      .project-card .overlay{position:absolute;inset:0;padding:16px;background:linear-gradient(180deg, rgba(2,6,23,0.1), rgba(2,6,23,0.6));display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+      .project-card h3{margin:0;font-size:1.05rem}
+      .project-card p{margin:0;font-size:0.9rem;color:rgba(230,238,248,0.85)}
+      .project-card::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent,#0004)}
+
+      footer{padding:20px;text-align:center;color:var(--muted);font-size:0.95rem}
+
+      /* responsive */
+      @media (max-width:900px){
+        .hero-grid{grid-template-columns:1fr}
+        .nav-links{display:none}
+        .nav-toggle{display:inline-block}
+      }
+    </style>
+
+    <script>
+      // tiny nav toggle for mobile
+      function toggleNav(){
+        const ul = document.querySelector('.nav-links');
+        if(!ul) return;
+        const isHidden = window.getComputedStyle(ul).display === 'none';
+        ul.style.display = isHidden ? 'flex' : 'none';
+      }
+      document.addEventListener('keyup', e=>{ if(e.key==='Escape'){ const ul=document.querySelector('.nav-links'); if(ul) ul.style.display='none'; } });
+    </script>
+  </head>
+  <body>
+
+    <header class="site-hero">
+      <div class="container">
+        <nav aria-label="Navigation principale">
+          <div class="logo">Succès D. ATCHEMI <span aria-hidden="true">•</span></div>
+          <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" onclick="toggleNav()">Menu</button>
+          <ul id="main-nav" class="nav-links">
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="hero-grid" role="region" aria-label="Introduction">
+          <div>
+            <h1 class="hero-title">Je construis des solutions Data & Machine Learning.</h1>
+            <p class="hero-sub">Développeur d'application, Étudiant en ingénierie Big Data — j'analyse, modélise et industrialise des modèles pour produire des insights actionnables.</p>
+            <p><a class="btn" href="#projects">Voir mes projets</a></p>
+          </div>
+
+          <aside class="profile-card" aria-label="Carte de profil">
+            <img src="images/tof.jpg" alt="Photo de Succès ATCHEMI" class="profile-pic">
+            <p style="margin-top:10px;color:var(--muted);font-size:0.95rem">Succès D. ATCHEMI — Data Enthusiast • Big Data • ML</p>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="about">
+        <div class="container">
+          <h2 class="section-title">À propos</h2>
+          <div class="about-text">
+            <p>
+              Jeune Data Enthusiast, passionné par la tech et l'innovation. Étudiant en <strong>ingénierie Big Data</strong>, je travaille sur
+              le traitement et l'analyse des données, le Machine Learning, la vision par ordinateur et la mise en production de modèles.
+            </p>
+            <p style="margin-top:10px;color:var(--muted)">
+              J'ai également des connaissances en gestion de projet et en <strong>Suivi & Évaluation</strong>. Mon objectif : appliquer la data pour résoudre des défis concrets.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects">
+        <div class="container">
+          <h2 class="section-title">Projets récents</h2>
+
+          <div class="projects-grid">
+            <a class="project-card" href="https://vegetablesimagesclassification-xdvkukq6hw3lsifp94pjt6.streamlit.app/" target="_blank" rel="noopener noreferrer" style="background-image:url('images/project1.jpg')" aria-label="Classification des légumes">
+              <div class="overlay">
+                <h3>Classification des légumes</h3>
+                <p>Modèle de vision par ordinateur pour classer des légumes à partir d'images (Deep Learning).</p>
+              </div>
+            </a>
+
+            <a class="project-card" href="#" style="background-image:linear-gradient(135deg,#334155,#0b1220)" aria-label="Analyse des ventes">
+              <div class="overlay">
+                <h3>Analyse des ventes</h3>
+                <p>Exploration & prédiction des tendances commerciales — ETL, visualisation et modèle prédictif.</p>
+              </div>
+            </a>
+
+            <a class="project-card" href="https://github.com/nuvnce/Prediction_of_dropping_out_of_school.git" target="_blank" rel="noopener noreferrer" style="background-image:url('images/project3.jpg')" aria-label="Prédiction d'abandon scolaire">
+              <div class="overlay">
+                <h3>Prédiction d'abandon scolaire</h3>
+                <p>Modèle prédictif pour estimer le risque d'abandon scolaire à partir de données socio-éducatives.</p>
+              </div>
+            </a>
+
+            <a class="project-card" href="#" style="background-image:linear-gradient(135deg,#1f2937,#071428)" aria-label="Data Pipeline">
+              <div class="overlay">
+                <h3>Data Pipeline</h3>
+                <p>Conception d'un pipeline Big Data pour ingestion, nettoyage et stockage de données à grande échelle.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2 class="section-title">Contact</h2>
+          <p style="color:var(--muted)">Retrouve-moi sur :</p>
+          <ul style="display:flex;gap:12px;padding:0;list-style:none;margin-top:10px">
+            <li><a href="https://www.linkedin.com/in/daniel-essonani-208047369/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://github.com/nuvnce" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="mailto:solimessonani@gmail.com">Email</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© 2025 Succès D. ATCHEMI — Tous droits réservés</p>
+      </div>
+    </footer>
+
+  </body>
+</html>
