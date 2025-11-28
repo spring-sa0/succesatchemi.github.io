@@ -1,123 +1,178 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Succès D. ATCHEMI — Portfolio</title>
-  <meta name="description" content="Portfolio de Succès D. ATCHEMI — projets data, machine learning, big data et pipelines.">
-  <meta name="theme-color" content="#071025">
-  <link rel="icon" href="images/favicon.png" type="image/png">
+  <meta name="description" content="Portfolio de Succès D. ATCHEMI — projets data, machine learning, big data et pipelines." />
+  <meta name="theme-color" content="#071025" />
+  <link rel="icon" href="images/favicon.png" type="image/png" />
 
   <style>
     :root{
-      --bg-0:#071025; --bg-1:#071428; --card-bg: rgba(255,255,255,0.02);
+      --bg-0:#071025; --bg-1:#071428;
+      --card-bg: rgba(255,255,255,0.02);
       --accent:#7c3aed; --accent-2:#5b21b6; --muted:#94a3b8;
       --glass:rgba(255,255,255,0.04);
       --container:1100px; --radius:12px; --gap:18px;
       --font-stack: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --nav-height:64px;
     }
 
+    /* Reset & base */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;font-family:var(--font-stack);background:linear-gradient(180deg,var(--bg-0) 0%,var(--bg-1) 60%);
-      color:#e6eef8;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:40px;
+      margin:0;
+      font-family:var(--font-stack);
+      background:linear-gradient(180deg,var(--bg-0) 0%,var(--bg-1) 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      font-size:16px;
     }
     a{color:inherit}
-    img{max-width:100%;display:block}
+    img{max-width:100%;display:block;height:auto}
 
     .container{max-width:var(--container);margin:0 auto;padding:0 20px;width:100%}
 
     /* Skip link */
-    .skip-link{position:absolute;left:12px;top:12px;background:#000;padding:8px 10px;border-radius:8px;transform:translateY(-120%);}
-    .skip-link:focus{transform:none;outline:3px solid var(--accent)}
+    .skip-link{position:absolute;left:12px;top:12px;background:#000;padding:8px 10px;border-radius:8px;transform:translateY(-120%);z-index:60;}
+    .skip-link:focus{transform:translateY(0);outline:3px solid var(--accent);}
 
-    header{padding:36px 0 12px}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{font-weight:700;font-size:1.05rem}
+    /* Header / Nav */
+    header{position:sticky;top:0;background:linear-gradient(180deg, rgba(7,16,37,0.8), rgba(7,20,40,0.75));backdrop-filter:blur(4px);z-index:50}
+    .topbar{height:var(--nav-height);display:flex;align-items:center}
+    nav{display:flex;align-items:center;justify-content:space-between;width:100%}
+    .brand{font-weight:700;font-size:1.05rem;padding-right:8px}
     .brand .dot{color:var(--accent)}
 
     /* Desktop nav */
-    .nav-list{display:flex;gap:14px;list-style:none;margin:0;padding:0}
-    .nav-list a{padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:500}
+    .nav-list{display:flex;gap:12px;align-items:center;margin:0;padding:0;list-style:none}
+    .nav-list a{padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:500;display:inline-block}
     .nav-list a:hover,.nav-list a:focus{color:#fff;background:var(--glass)}
 
-    /* Hamburger */
+    /* Hamburger & drawer */
     .nav-toggle{display:none;background:transparent;border:1px solid var(--glass);padding:8px;border-radius:10px;color:var(--muted)}
+    .drawer{position:fixed;right:0;top:0;height:100vh;width:320px;max-width:80vw;background:linear-gradient(180deg,#071428,#071025);box-shadow:-20px 40px 80px rgba(2,6,23,0.6);transform:translateX(110%);transition:transform .28s cubic-bezier(.2,.9,.2,1);z-index:60;padding:24px;display:flex;flex-direction:column;gap:16px}
+    .drawer.open{transform:translateX(0)}
+    .drawer .close-btn{align-self:flex-end;background:transparent;border:none;color:var(--muted);font-size:1.1rem;padding:8px}
+    .drawer nav ul{display:flex;flex-direction:column;gap:12px;padding-top:6px}
 
     /* Hero */
-    .hero-grid{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:center;margin-top:22px}
-    .hero-title{font-size:clamp(1.6rem,3.6vw,2.6rem);margin:0 0 8px}
-    .hero-sub{color:var(--muted);margin:0 0 18px;max-width:58ch}
+    .hero{padding:28px 0}
+    .hero-grid{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:center;margin-top:8px}
+    .hero-title{font-size:clamp(1.4rem,4.5vw,2.4rem);margin:0 0 8px}
+    .hero-sub{color:var(--muted);margin:0 0 16px;max-width:60ch}
     .btn{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;padding:10px 16px;border-radius:10px;font-weight:600}
 
     /* Profile */
-    .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;padding:18px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+    .profile-card{background:var(--card-bg);border-radius:14px;padding:16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
     .profile-pic{width:140px;height:140px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.04);background:linear-gradient(135deg,#0b1220,#0f1724)}
     .profile-meta{margin:0;color:var(--muted);font-size:0.95rem}
 
-    /* Sections */
-    section{padding:48px 0}
-    h2.section-title{font-size:1.25rem;margin:0 0 14px}
+    /* Sections & layout */
+    section{padding:36px 0}
+    h2.section-title{font-size:1.1rem;margin:0 0 12px}
     .muted{color:var(--muted)}
     .grid-2{display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start}
 
-    /* Cards & lists */
     .card{background:var(--card-bg);border-radius:12px;padding:14px}
     .job-card + .job-card{margin-top:12px}
+
     .skills-list{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
     .skill{background:var(--glass);padding:6px 10px;border-radius:8px;color:var(--muted);font-weight:600;font-size:0.95rem}
 
     /* Projects */
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-    .project-card{position:relative;display:block;height:180px;border-radius:12px;overflow:hidden;background-size:cover;background-position:center;color:#fff;transition:transform .28s}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .project-card{position:relative;display:block;height:220px;border-radius:12px;overflow:hidden;background-size:cover;background-position:center;color:#fff;transition:transform .28s}
     .project-card:hover{transform:translateY(-6px)}
     .overlay{position:absolute;inset:0;padding:16px;background:linear-gradient(180deg, rgba(2,6,23,0.08), rgba(2,6,23,0.6));display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
 
     footer{padding:28px 0;text-align:center;color:var(--muted);font-size:0.95rem}
 
-    /* Accessibility focus */
+    /* Focus visible */
     :focus{outline:none}
     a:focus-visible, button:focus-visible{outline:3px solid rgba(124,58,237,0.28);outline-offset:2px;border-radius:8px}
 
-    /* Responsive */
+    /* Responsive breakpoints */
+    @media (max-width:1100px){
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-grid{grid-template-columns:1fr 300px}
+    }
+
     @media (max-width:900px){
-      .hero-grid{grid-template-columns:1fr}
-      .nav-list{display:none;flex-direction:column;position:absolute;right:20px;top:64px;padding:12px;border-radius:10px;backdrop-filter:blur(6px)}
-      .nav-list.open{display:flex}
+      .nav-list{display:none}
       .nav-toggle{display:inline-block}
+      .hero-grid{grid-template-columns:1fr}
       .grid-2{grid-template-columns:1fr}
+      .profile-pic{width:120px;height:120px}
+      .project-card{height:180px}
+    }
+
+    @media (max-width:600px){
+      html{font-size:15px}
+      .hero{padding:18px 0}
+      .topbar{height:56px}
+      .brand{font-size:0.98rem}
+      .drawer{width:85vw}
+      .projects-grid{grid-template-columns:1fr}
+      .profile-pic{width:108px;height:108px}
+      .project-card{height:160px}
+      .container{padding:0 14px}
+      .hero-title{font-size:clamp(1.2rem,6vw,1.8rem)}
+      .hero-sub{font-size:0.95rem}
     }
 
     @media (prefers-reduced-motion: reduce){
-      .project-card, .project-card:hover{transition:none}
+      .project-card, .project-card:hover, .drawer{transition:none}
     }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <header role="banner">
-    <div class="container">
+  <header role="banner" aria-label="En-tête du site">
+    <div class="container topbar">
       <nav aria-label="Navigation principale">
-        <div style="display:flex;align-items:center;gap:12px;justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:12px">
           <div class="brand">Succès D. ATCHEMI <span class="dot" aria-hidden="true">•</span></div>
+        </div>
 
-          <div style="display:flex;align-items:center;gap:12px">
-            <button class="nav-toggle" id="navToggle" aria-controls="mainNav" aria-expanded="false" aria-label="Ouvrir le menu">☰ Menu</button>
-            <ul id="mainNav" class="nav-list" role="menubar">
-              <li role="none"><a role="menuitem" href="#about">À propos</a></li>
-              <li role="none"><a role="menuitem" href="#experience">Expérience</a></li>
-              <li role="none"><a role="menuitem" href="#education">Formation</a></li>
-              <li role="none"><a role="menuitem" href="#skills">Compétences</a></li>
-              <li role="none"><a role="menuitem" href="#projects">Projets</a></li>
-              <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
-            </ul>
-          </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <button class="nav-toggle" id="navToggle" aria-controls="drawer" aria-expanded="false" aria-label="Ouvrir le menu">☰ Menu</button>
+          <ul class="nav-list" id="mainNav" role="menubar" aria-label="Menu principal">
+            <li role="none"><a role="menuitem" href="#about">À propos</a></li>
+            <li role="none"><a role="menuitem" href="#experience">Expérience</a></li>
+            <li role="none"><a role="menuitem" href="#education">Formation</a></li>
+            <li role="none"><a role="menuitem" href="#skills">Compétences</a></li>
+            <li role="none"><a role="menuitem" href="#projects">Projets</a></li>
+            <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
+          </ul>
         </div>
       </nav>
+    </div>
 
-      <div class="hero-grid" role="region" aria-label="Introduction">
+    <!-- Drawer for small screens -->
+    <div id="drawer" class="drawer" aria-hidden="true">
+      <button class="close-btn" id="drawerClose" aria-label="Fermer le menu">✕</button>
+      <nav aria-label="Navigation mobile">
+        <ul>
+          <li><a href="#about" class="drawer-link">À propos</a></li>
+          <li><a href="#experience" class="drawer-link">Expérience</a></li>
+          <li><a href="#education" class="drawer-link">Formation</a></li>
+          <li><a href="#skills" class="drawer-link">Compétences</a></li>
+          <li><a href="#projects" class="drawer-link">Projets</a></li>
+          <li><a href="#contact" class="drawer-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero container" aria-label="Introduction">
+      <div class="hero-grid">
         <div>
           <h1 class="hero-title">Je construis des solutions Data &amp; Machine Learning.</h1>
           <p class="hero-sub">Étudiant en ingénierie Big Data — j'analyse, modélise et industrialise des modèles pour produire des insights actionnables.</p>
@@ -128,167 +183,132 @@
           <img src="images/tof.jpg" alt="Photo de Succès ATCHEMI" class="profile-pic" loading="lazy"
                onerror="this.onerror=null;this.replaceWith(createFallbackAvatar());">
           <p id="profileName" class="profile-meta">Succès D. ATCHEMI — Software Engineer • Data Enthusiast • Big Data • ML</p>
-          <p class="muted" style="font-size:0.9rem;margin:0">Ingénieur logiciel — <strong>Société des Postes du Togo</strong> <span style="color:var(--muted);font-size:0.85rem"> (info publique — LinkedIn)</span></p>
+          <p class="muted" style="font-size:0.9rem;margin:0">Analyste Programmeur — <strong>Société des Postes du Togo</strong></p>
         </aside>
       </div>
-    </div>
-  </header>
-
-  <main id="main" tabindex="-1">
-    <!-- À propos -->
-    <section id="about" aria-labelledby="aboutTitle">
-      <div class="container">
-        <h2 id="aboutTitle" class="section-title">À propos</h2>
-        <div class="grid-2">
-          <div>
-            <p>Jeune Data Enthusiast, passionné par la tech et l'innovation. Étudiant en <strong>ingénierie Big Data</strong>, je travaille sur le traitement et l'analyse des données, le Machine Learning, la vision par ordinateur et la mise en production de modèles.</p>
-            <p class="muted" style="margin-top:10px">J'ai également des connaissances en gestion de projet et en <strong>Suivi &amp; Évaluation</strong>. Mon objectif : appliquer la data pour résoudre des défis concrets.</p>
-          </div>
-
-          <div class="card">
-            <h3 style="margin:0 0 8px">Contact rapide</h3>
-            <p class="muted" style="margin:0 0 8px">Email: <a href="mailto:succesatchemi8@gmail.com">succesatchemi8@gmail.com</a></p>
-            <p class="muted" style="margin:0">LinkedIn: <a href="https://www.linkedin.com/in/djori-atchemi-5777b9397/" target="_blank" rel="noopener noreferrer">Profil public</a></p>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- Expérience -->
-    <section id="experience" aria-labelledby="expTitle">
-      <div class="container">
-        <h2 id="expTitle" class="section-title">Expériences professionelles</h2>
-
-        <!-- Pre-rempli avec info publique -->
-        <article class="card job-card" aria-labelledby="job1">
-          <h3 id="job1" style="margin:0">Analyste Programmeur et Integrateur de Solution IT — Société des Postes du Togo <span style="color:var(--muted);font-size:0.9rem">(info publique — LinkedIn)</span></h3>
-          <p class="muted" style="margin-top:8px"><!-- REMPLIR : dates (ex : 2023 — présent), missions et réalisations -->Dates : Février 2024 - Présent.</p>
-          <ul class="muted" style="margin-top:8px">
-            <li>Conception et implementation de modèles de recommandation de produits et de services.</li>
-            <li>Gestion de la mise à jour de l'application de gestion des garanties de soumissions</li>
-            <li>Developper et Maintenance de l'application des virements STAR UEMOA</li>
-            <li>Installer et administrer de serveurs d'application (Glassfish, Payara, Weblogic)</li>
-            <li>Participer à tous les aspects d'un projet, de la conception en passant par le developpemet, les tests et la mise en production</li>
-            <li>Redaction des cahiers de charges et de documents technique</li>
-            <li>Mise en place d'un outil de suivi de projet : Zentao</li>
-            <li>Deployement d'application sous Docker</li>
-            <li>Administration de PowerBI et de tableau de bord</li>
-          </ul>
-        </article>
-
-        <!-- Placeholder pour autres expériences -->
-        <article class="card job-card" aria-labelledby="job2">
-          <h3 id="job2" style="margin:0">Responsable Informatique - NICE HOTEL Atakpamé</h3>
-          <p class="muted" style="margin-top:8px"><!-- REMPLIR : ex : stage, missions freelance, bénévolat -->Freelance : 2022 - 2025</p>
-          <ul class="muted" style="margin-top:8px">
-            <li>Conception et implementation du site web et d'une application de gestion d'hotel.</li>
-            <li>Administration du reseau et du serveur</li>
-          </ul>
-        </article>
-
-        <article class="card job-card" aria-labelledby="job3">
-          <h3 id="job3" style="margin:0">Développeur d'application — Société des Postes du Togo <span style="color:var(--muted);font-size:0.9rem">(info publique — LinkedIn)</span></h3>
-          <p class="muted" style="margin-top:8px"><!-- REMPLIR : dates (ex : 2023 — présent), missions et réalisations -->Stage | Dates : Novembre 2022 - Novembre 2023</p>
-          <ul class="muted" style="margin-top:8px">
-            <li>Conception de l'application de gestion des garanties de soumissions</li>
-            <li>Conception de l'application de suivi des liaison des bureau de poste</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- Formation -->
-    <section id="education" aria-labelledby="eduTitle">
-      <div class="container">
-        <h2 id="eduTitle" class="section-title">Formation</h2>
-
-        <div class="card" style="margin-bottom:12px">
-          <strong>Université Catholique de l'Afrique</strong>
-          <p class="muted" style="margin:6px 0">Cycle d'Ingénieur BIG DATA | 2024- 2027</p>
-          <!--<p class="muted" style="font-size:0.9rem;margin:0">Source publique partielle : LinkedIn.</p>-->
-        </div>
-        <div class="card" style="margin-bottom:12px">
-          <strong>Lomé Business School</strong>
-          <p class="muted" style="margin:6px 0">Bachelor en Informatique | Génie Logiciel | 2021-2022</p>
-          
+    <section id="about" aria-labelledby="aboutTitle" class="container">
+      <h2 id="aboutTitle" class="section-title">À propos</h2>
+      <div class="grid-2" style="margin-top:12px">
+        <div>
+          <p>Jeune Data Enthusiast, passionné par la tech et l'innovation. Étudiant en <strong>ingénierie Big Data</strong>, je travaille sur le traitement et l'analyse des données, le Machine Learning, la vision par ordinateur et la mise en production de modèles.</p>
+          <p class="muted" style="margin-top:10px">J'ai également des connaissances en gestion de projet et en <strong>Suivi &amp; Évaluation</strong>. Mon objectif : appliquer la data pour résoudre des défis concrets.</p>
         </div>
 
         <div class="card">
-          <strong>Autres formations / Certifications</strong>
-          <p class="muted" style="margin:6px 0"><!-- REMPLIR : ex : Certifs Coursera, Kaggle, bootcamps --></p>
+          <h3 style="margin:0 0 8px">Contact rapide</h3>
+          <p class="muted" style="margin:0 0 8px">Email: <a href="mailto:succesatchemi8@gmail.com">succesatchemi8@gmail.com</a></p>
+          <p class="muted" style="margin:0">LinkedIn: <a href="https://www.linkedin.com/in/djori-atchemi-5777b9397/" target="_blank" rel="noopener noreferrer">Profil public</a></p>
         </div>
       </div>
     </section>
 
-    <!-- Compétences -->
-    <section id="skills" aria-labelledby="skillsTitle">
-      <div class="container">
-        <h2 id="skillsTitle" class="section-title">Compétences</h2>
-       <!-- <p class="muted" style="margin-top:0;margin-bottom:8px">Compétences extraites ou à confirmer :</p>-->
-        <ul class="skills-list" aria-label="Liste des compétences">
-          <li class="skill">Python</li>
-          <li class="skill">Machine Learning</li>
-          <li class="skill">Big Data</li>
-          <li class="skill">Java / Java EE/ SpringBoot</li>
-          <li class="skill">Oracle & PostgreSQL & MongoDB</li>
-          <li class="skill"> Docker / CI-CD / DevOps / MlOps</li>
-          <li class="skill"> PowerBI</li>
-          <li class="skill"> Analyse de donnée </li>
-          <li class="skill"> Project Management</li>
+    <section id="experience" aria-labelledby="expTitle" class="container">
+      <h2 id="expTitle" class="section-title">Expériences professionnelles</h2>
+
+      <article class="card job-card" aria-labelledby="job1" style="margin-top:12px">
+        <h3 id="job1" style="margin:0">Analyste Programmeur &amp; Intégrateur — Société des Postes du Togo <span class="muted" style="font-size:0.9rem">(LinkedIn)</span></h3>
+        <p class="muted" style="margin-top:8px">Dates : Février 2024 - Présent.</p>
+        <ul class="muted" style="margin-top:8px">
+          <li>Conception et implémentation de modèles de recommandation de produits et de services.</li>
+          <li>Mise à jour et maintenance de l'application de gestion des garanties de soumissions.</li>
+          <li>Développement et maintenance de l'application des virements STAR UEMOA.</li>
+          <li>Installation et administration de serveurs d'application (Glassfish, Payara, Weblogic).</li>
+          <li>Rédaction de cahiers des charges et documents techniques.</li>
+          <li>Déploiement d'applications avec Docker ; administration PowerBI.</li>
         </ul>
+      </article>
+
+      <article class="card job-card" aria-labelledby="job2" style="margin-top:12px">
+        <h3 id="job2" style="margin:0">Responsable Informatique — NICE HOTEL Atakpamé</h3>
+        <p class="muted" style="margin-top:8px">Freelance : 2022 - 2025</p>
+        <ul class="muted" style="margin-top:8px">
+          <li>Conception et implémentation du site web et d'une application de gestion d'hôtel.</li>
+          <li>Administration réseau et serveur.</li>
+        </ul>
+      </article>
+
+      <article class="card job-card" aria-labelledby="job3" style="margin-top:12px">
+        <h3 id="job3" style="margin:0">Développeur d'application — Société des Postes du Togo (Stage)</h3>
+        <p class="muted" style="margin-top:8px">Nov 2022 - Nov 2023</p>
+        <ul class="muted" style="margin-top:8px">
+          <li>Conception d'applications internes : gestion des garanties et suivi des liaisons bureaux de poste.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="education" aria-labelledby="eduTitle" class="container">
+      <h2 id="eduTitle" class="section-title">Formation</h2>
+      <div style="margin-top:12px" class="card">
+        <strong>Université Catholique de l'Afrique</strong>
+        <p class="muted" style="margin:6px 0">Cycle d'Ingénieur BIG DATA | 2024 - 2027</p>
+      </div>
+
+      <div style="margin-top:12px" class="card">
+        <strong>Lomé Business School</strong>
+        <p class="muted" style="margin:6px 0">Bachelor en Informatique | Génie Logiciel | 2021 - 2022</p>
       </div>
     </section>
 
-    <!-- Projets -->
-    <section id="projects" aria-labelledby="projectsTitle">
-      <div class="container">
-        <h2 id="projectsTitle" class="section-title">Projets récents</h2>
+    <section id="skills" aria-labelledby="skillsTitle" class="container">
+      <h2 id="skillsTitle" class="section-title">Compétences</h2>
+      <ul class="skills-list" style="margin-top:12px" aria-label="Liste des compétences">
+        <li class="skill">Python</li>
+        <li class="skill">Machine Learning</li>
+        <li class="skill">Big Data</li>
+        <li class="skill">Java / Spring Boot</li>
+        <li class="skill">Oracle / PostgreSQL / MongoDB</li>
+        <li class="skill">Docker / CI-CD / DevOps / MLOps</li>
+        <li class="skill">PowerBI</li>
+        <li class="skill">Analyse de données</li>
+        <li class="skill">Project Management</li>
+      </ul>
+    </section>
 
-        <div class="projects-grid">
-          <a class="project-card" href="https://vegetablesimagesclassification-xdvkukq6hw3lsifp94pjt6.streamlit.app/" target="_blank" rel="noopener noreferrer"
-             aria-label="Classification des légumes" style="background-image:url('images/project1.jpg')">
-            <div class="overlay">
-              <h3 style="margin:0">Classification des légumes</h3>
-              <p style="margin:0" class="muted">Modèle de vision par ordinateur pour classer des légumes à partir d'images (Deep Learning).</p>
-            </div>
-          </a>
+    <section id="projects" aria-labelledby="projectsTitle" class="container">
+      <h2 id="projectsTitle" class="section-title">Projets récents</h2>
+      <div class="projects-grid" style="margin-top:12px">
+        <a class="project-card" href="https://vegetablesimagesclassification-xdvkukq6hw3lsifp94pjt6.streamlit.app/" target="_blank" rel="noopener noreferrer"
+           aria-label="Classification des légumes" style="background-image:url('images/project1.jpg')">
+          <div class="overlay">
+            <h3 style="margin:0">Classification des légumes</h3>
+            <p style="margin:0" class="muted">Modèle de vision par ordinateur pour classer des légumes à partir d'images (Deep Learning).</p>
+          </div>
+        </a>
 
-          <a class="project-card" href="#" aria-label="Analyse des ventes" style="background-image:linear-gradient(135deg,#334155,#0b1220)">
-            <div class="overlay">
-              <h3 style="margin:0">Analyse des ventes</h3>
-              <p style="margin:0" class="muted">Exploration &amp; prédiction des tendances commerciales — ETL, visualisation et modèle prédictif.</p>
-            </div>
-          </a>
+        <a class="project-card" href="#" aria-label="Analyse des ventes" style="background-image:linear-gradient(135deg,#334155,#0b1220)">
+          <div class="overlay">
+            <h3 style="margin:0">Analyse des ventes</h3>
+            <p style="margin:0" class="muted">Exploration &amp; prédiction des tendances commerciales — ETL, visualisation et modèle prédictif.</p>
+          </div>
+        </a>
 
-          <a class="project-card" href="https://github.com/nuvnce/Prediction_of_dropping_out_of_school.git" target="_blank" rel="noopener noreferrer"
-             aria-label="Prédiction d'abandon scolaire" style="background-image:url('images/project3.jpg')">
-            <div class="overlay">
-              <h3 style="margin:0">Prédiction d'abandon scolaire</h3>
-              <p style="margin:0" class="muted">Modèle prédictif pour estimer le risque d'abandon scolaire à partir de données socio-éducatives.</p>
-            </div>
-          </a>
+        <a class="project-card" href="https://github.com/nuvnce/Prediction_of_dropping_out_of_school.git" target="_blank" rel="noopener noreferrer"
+           aria-label="Prédiction d'abandon scolaire" style="background-image:url('images/project3.jpg')">
+          <div class="overlay">
+            <h3 style="margin:0">Prédiction d'abandon scolaire</h3>
+            <p style="margin:0" class="muted">Modèle prédictif pour estimer le risque d'abandon scolaire à partir de données socio-éducatives.</p>
+          </div>
+        </a>
 
-          <a class="project-card" href="#" aria-label="Data Pipeline" style="background-image:linear-gradient(135deg,#1f2937,#071428)">
-            <div class="overlay">
-              <h3 style="margin:0">Data Pipeline</h3>
-              <p style="margin:0" class="muted">Conception d'un pipeline Big Data pour ingestion, nettoyage et stockage de données à grande échelle.</p>
-            </div>
-          </a>
-        </div>
+        <a class="project-card" href="#" aria-label="Data Pipeline" style="background-image:linear-gradient(135deg,#1f2937,#071428)">
+          <div class="overlay">
+            <h3 style="margin:0">Data Pipeline</h3>
+            <p style="margin:0" class="muted">Conception d'un pipeline Big Data pour ingestion, nettoyage et stockage de données à grande échelle.</p>
+          </div>
+        </a>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" aria-labelledby="contactTitle">
-      <div class="container">
-        <h2 id="contactTitle" class="section-title">Contact</h2>
-        <p class="muted">Retrouve-moi sur :</p>
-        <ul style="display:flex;gap:12px;padding:0;list-style:none;margin-top:10px">
-          <li><a href="https://www.linkedin.com/in/djori-atchemi-5777b9397/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-          <li><a href="https://github.com/spring-sa0" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a href="mailto:succesatchemi8@gmail.com">Email</a></li>
-        </ul>
-      </div>
+    <section id="contact" aria-labelledby="contactTitle" class="container" style="margin-bottom:36px">
+      <h2 id="contactTitle" class="section-title">Contact</h2>
+      <p class="muted" style="margin-top:8px">Retrouve-moi sur :</p>
+      <ul style="display:flex;flex-wrap:wrap;gap:12px;padding:0;list-style:none;margin-top:10px">
+        <li><a href="https://www.linkedin.com/in/djori-atchemi-5777b9397/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/spring-sa0" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="mailto:succesatchemi8@gmail.com">Email</a></li>
+      </ul>
     </section>
   </main>
 
@@ -301,43 +321,48 @@
   <script>
     (function () {
       const toggle = document.getElementById('navToggle');
-      const nav = document.getElementById('mainNav');
+      const drawer = document.getElementById('drawer');
+      const closeBtn = document.getElementById('drawerClose');
+      const drawerLinks = document.querySelectorAll('.drawer-link');
 
-      function setOpen(open){
-        nav.classList.toggle('open', open);
-        toggle.setAttribute('aria-expanded', String(open));
-        if (window.matchMedia('(max-width:900px)').matches) {
-          nav.setAttribute('aria-hidden', String(!open));
-        } else {
-          nav.removeAttribute('aria-hidden');
-        }
+      function openDrawer() {
+        drawer.classList.add('open');
+        drawer.setAttribute('aria-hidden', 'false');
+        toggle.setAttribute('aria-expanded', 'true');
+        // trap focus roughly (simple)
+        document.body.style.overflow = 'hidden';
+      }
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        toggle.focus();
       }
 
-      toggle.addEventListener('click', ()=> setOpen(!nav.classList.contains('open')) );
+      toggle.addEventListener('click', () => {
+        if (drawer.classList.contains('open')) closeDrawer(); else openDrawer();
+      });
+      closeBtn.addEventListener('click', closeDrawer);
 
+      // close when clicking outside drawer
       document.addEventListener('click', (e) => {
-        if (!nav.contains(e.target) && !toggle.contains(e.target) && nav.classList.contains('open')) {
-          setOpen(false);
+        if (!drawer.contains(e.target) && !toggle.contains(e.target) && drawer.classList.contains('open')) {
+          closeDrawer();
         }
       });
 
+      // close on ESC
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && nav.classList.contains('open')) {
-          setOpen(false); toggle.focus();
-        }
+        if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
       });
 
-      window.addEventListener('resize', () => {
-        if (!window.matchMedia('(max-width:900px)').matches) {
-          nav.classList.remove('open'); nav.removeAttribute('aria-hidden'); toggle.setAttribute('aria-expanded','false');
-        } else {
-          nav.setAttribute('aria-hidden', String(!nav.classList.contains('open')));
-        }
-      });
+      // close drawer when a link is clicked (mobile)
+      drawerLinks.forEach(a => a.addEventListener('click', closeDrawer));
 
-      // fallback avatar creation for broken image
+      // image fallback
       window.createFallbackAvatar = function () {
-        const w = 140;
+        const w = 120;
         const el = document.createElement('div');
         el.style.width = el.style.height = w + 'px';
         el.style.borderRadius = '50%';
